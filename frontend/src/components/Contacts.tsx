@@ -29,7 +29,7 @@ function Contacts() {
     },
     validate,
       onSubmit: (values: Contact) => {
-          axios.post('http://localhost:5000/sendMail', values).then(() => {
+          axios.post('https://watson-studio-16.onrender.com/sendMail', values).then(() => {
             <UseToast status="success"></UseToast>
         })
       Loginformik.resetForm();

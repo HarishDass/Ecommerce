@@ -13,7 +13,7 @@ function FirstLine() {
   };
   const [imageArray, setImageArray] = useState<productDetails[]>([]);
   useEffect(() => {
-    axios.get("http://localhost:5000/getProduct").then((res: any) => {
+    axios.get("https://watson-studio-16.onrender.com/getProduct").then((res: any) => {
       setImageArray(res.data);
     });
   }, []);

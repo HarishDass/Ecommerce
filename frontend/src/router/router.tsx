@@ -12,14 +12,14 @@ function Router() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Login />}></Route>
-        <Route element={<RequireAuth />}>
-          <Route path="home" element={<Bannar />}></Route>
+        <Route path="login" element={<Login />}></Route>
+        
+          <Route path="/" element={<Bannar />}></Route>
           <Route path="products" element={<Products />}></Route>
           <Route path="latest" element={<Latest />}></Route>
           <Route path="contact" element={<Contacts />}></Route>
           <Route path="cart" element={<Cart />}></Route>
-        </Route>
+        
       </Routes>
     </BrowserRouter>
   );

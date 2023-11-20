@@ -10,7 +10,9 @@ function Cart() {
   const [loader, SetLoader] = useState(false);
   useEffect(() => {
     SetLoader(true);
-    axios.get("http://localhost:5000/getCart").then((res: any) => {
+    axios.get("https://watson-studio-16.onrender.com/getCart").then((res: any) => {
+      console.log(res.data);
+      
       res.data.forEach((resp: any) => {
         resp.edit = false;
       });
@@ -59,7 +61,7 @@ function Cart() {
   };
   const del = (product: any) => (e: any) => {
     e.preventDefault();
-    axios.delete("http://localhost:5000/delCart", product);
+    axios.delete("https://watson-studio-16.onrender.com/delCart", product);
     setProducts(
       products.filter(
         (res: any) => JSON.stringify(res) !== JSON.stringify(product)
@@ -93,7 +95,7 @@ function Cart() {
     setProducts(updatedProducts);
 
     axios
-      .put("http://localhost:5000/updateCart", product)
+      .put("https://watson-studio-16.onrender.com/updateCart", product)
       .then((res: any) => {
         setProducts(res.data);
       })

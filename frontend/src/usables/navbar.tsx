@@ -61,7 +61,7 @@ const NavBar: React.FC = () => {
               key={index}
               className={location.pathname === "/" + x ? "active-link" : "list"}
             >
-              <Link
+              {x!=='home' ? <Link
                 to={"/" + x}
                 className={
                   location.pathname === "/" + x
@@ -70,7 +70,16 @@ const NavBar: React.FC = () => {
                 }
               >
                 {x.toLocaleUpperCase()}
-              </Link>
+              </Link> : (<Link
+                to={"/"}
+                className={
+                  location.pathname === "/" + x
+                    ? "active-link-list"
+                    : "list-link"
+                }
+              >
+                {x.toLocaleUpperCase()}
+              </Link>)}
             </li>
           );
         })}

@@ -150,13 +150,12 @@ app.get("/getCart", async (req, res) => {
   try {
     const nothing = await cart.find();
     res.json(nothing);
-
   } catch (err) {
     console.log(err);
   }
 });
 app.put("/updateCart", async (req, res) => {
-console.log(req.body);
+  console.log(req.body);
   try {
     await cart.findOneAndUpdate(req.body);
   } catch (err) {
@@ -173,15 +172,34 @@ app.delete("/delCart", async (req, res) => {
 });
 app.post("/filter", async (req, res) => {
   try {
-    const nothing = await Products.find({
-      products: { $elemMatch: { name: req.body.productname } },
-    });
+    const nothing = await Products.find([
+      {
+        $match: {
+          "products.name": "Shirt",
+        },
+      },
+      {
+        $project: {
+          _id: 1,
+          section: 1,
+          sectionImage: 1,
+          products: {
+            $filter: {
+              input: "$products",
+              as: "product",
+              cond: { $eq: ["$$product.name", "Shirt"] },
+            },
+          },
+        },
+      },
+    ]);
     res.json(nothing);
     console.log(nothing);
   } catch (err) {
     console.log(err);
   }
 });
+
 app.post("/postLogin", async (req, res) => {
   try {
     const find_person = await Person.findOne({ username: req.body.username });

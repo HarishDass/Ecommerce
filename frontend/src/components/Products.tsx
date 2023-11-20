@@ -19,7 +19,7 @@ function Products() {
     if (getlink) {
       setProduct(getlink);
     } else {
-      axios.get("http://localhost:5000/getProduct").then((res: any) => {
+      axios.get("https://watson-studio-16.onrender.com/getProduct").then((res: any) => {
         setProduct(res.data);
       });
     }
@@ -31,15 +31,14 @@ function Products() {
     onSubmit: (values: any) => {
       console.log(values);
 
-      axios.post(`http://localhost:5000/filter`, values).then((res: any) => {
+      axios.post(`https://watson-studio-16.onrender.com/filter`, values).then((res: any) => {
         setProduct(res.data);
       });
-      formik.resetForm();
     },
   });
   const addCart = (product: any) => (e: any) => {
     e.preventDefault();
-    axios.post(`http://localhost:5000/addCart`, product).then((res: any) => {
+    axios.post(`https://watson-studio-16.onrender.com/addCart`, product).then((res: any) => {
       console.log(res.data);
     });
   };
